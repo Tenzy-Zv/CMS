@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create an Account</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #d1a500;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #000;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .container img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin: 20px 0;
+        }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box; /* Added for consistent box sizing */
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            box-sizing: border-box; /* Added for consistent box sizing */
+        }
+
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            color: #555;
+            border: 1px solid #ccc;
+            margin-top: 10px;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 14px;
+            height: 50px;
+            width: 400px;
+            box-sizing: border-box; /* Added for consistent box sizing */
+        }
+
+        .google-btn img {
+            margin-right: 6px;
+            height: 50px;
+            width: 50px;
+        }
+
+        .terms {
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        .terms a {
+            color: #000;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="/htmls/JNEC-Logo-100x100-1-removebg-preview.png" alt="College Logo">
+        <h2>Create an account</h2>
+        <p>Enter your email to sign up for this app</p>
+
+        <!-- Email input field -->
+        <input type="email" id="emailInput" placeholder="Enter your JNEC email" required>
+
+        <!-- Password input field -->
+        <input type="password" id="passwordInput" placeholder="Enter your password" required>
+
+        <!-- Sign up button, now with validation for JNEC emails -->
+        <button onclick="validateEmail()">Sign up with email</button>
+
+        <p>or continue with</p>
+        <!-- Redirect to the profile page after clicking Google -->
+        <a href="/htmls/login.html">
+            <button class="google-btn">
+                <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo"> Google
+            </button>
+        </a>
+
+        <p class="terms">By clicking continue, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+    </div>
+
+    <!-- JavaScript for email validation -->
+    <script>
+        // Auto-fill email extension
+        const emailInput = document.getElementById("emailInput");
+        emailInput.addEventListener("input", function() {
+            const currentValue = emailInput.value.split("@")[0]; // Get the part before '@'
+            if (!emailInput.value.includes("@")) {
+                emailInput.value = currentValue + "@jnec.rub.edu.bt"; // Append the email extension
+            }
+        });
+
+        function validateEmail() {
+            var emailInputValue = document.getElementById("emailInput").value;
+            var jnecPattern = /^[a-zA-Z0-9._%+-]+@jnec\.rub\.edu\.bt$/;
+
+            if (jnecPattern.test(emailInputValue)) {
+                // If valid, redirect to login page
+                window.location.href = "/htmls/login.html";
+            } else {
+                alert("Please enter a valid JNEC email address.");
+            }
+        }
+    </script>
+</body>
+</html>

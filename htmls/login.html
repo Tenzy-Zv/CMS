@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #d1a500; /* Yellow background */
+            color: #000;
+            height: 100vh; /* Full height */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            width: 100%; /* Full width */
+            max-width: 400px; /* Max width */
+            background-color: #fff; /* White background */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+        }
+
+        h1 {
+            font-size: 24px; /* Title size */
+            margin-bottom: 20px; /* Space below title */
+        }
+
+        .profile-picture {
+            margin-bottom: 20px; /* Space below profile picture */
+        }
+
+        .profile-picture img {
+            width: 100px; /* Profile image size */
+            height: 100px; /* Profile image size */
+            border-radius: 50%; /* Circular profile image */
+            border: 2px solid #d1a500; /* Yellow border */
+            background-color: #f0f0f0; /* Light gray background for the profile image */
+        }
+
+        .profile-picture button {
+            padding: 10px 15px; /* Button padding */
+            margin-top: 10px; /* Space above button */
+            border: none; /* No border */
+            background-color: #d1a500; /* Button background color */
+            color: #fff; /* Button text color */
+            border-radius: 5px; /* Rounded button corners */
+            cursor: pointer; /* Pointer cursor on hover */
+            font-size: 16px; /* Button text size */
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column; /* Stack inputs vertically */
+            align-items: center; /* Center align inputs */
+        }
+
+        .form input {
+            width: 100%; /* Input field width */
+            padding: 15px; /* Input field padding */
+            margin: 10px 0; /* Space around input fields */
+            border: 1px solid #ccc; /* Input border color */
+            border-radius: 5px; /* Rounded input corners */
+            font-size: 16px; /* Input text size */
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .buttons {
+            display: flex; /* Flex container for buttons */
+            justify-content: space-between; /* Space between buttons */
+            margin-top: 10px; /* Space above buttons */
+        }
+
+        .btn {
+            width: 48%; /* Each button width */
+            padding: 15px; /* Button padding */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded button corners */
+            font-size: 16px; /* Button text size */
+            cursor: pointer; /* Pointer cursor on hover */
+            color: #fff; /* White text */
+        }
+
+        .customer-btn {
+            background-color: #28a745; /* Green background for Customer button */
+        }
+
+        .staff-btn {
+            background-color: #007bff; /* Blue background for Staff button */
+        }
+
+        .note {
+            font-size: 12px; /* Note text size */
+            margin-top: 10px; /* Space above note */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 20px; /* Adjust title size on smaller screens */
+            }
+
+            .profile-picture img {
+                width: 80px; /* Smaller profile image */
+                height: 80px; /* Smaller profile image */
+            }
+
+            .btn {
+                font-size: 14px; /* Adjust button text size */
+            }
+
+            .note {
+                font-size: 10px; /* Adjust note text size */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>User Profile</h1>
+        <div class="profile-picture">
+            <img src="/htmls/pictures/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail-removebg-preview.png" alt="Profile" id="profileImage">
+            <br>
+            <button onclick="uploadProfile()">Set Profile</button>
+            <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="displayImage(this)">
+        </div>
+
+        <div class="form">
+            <input type="text" placeholder="First Name" id="firstName" required>
+            <input type="text" placeholder="Last Name" id="lastName" required>
+            <input type="text" placeholder="Phone Number" id="phoneNumber" required>
+        </div>
+
+        <div class="buttons">
+            <button class="btn customer-btn" onclick="selectRole('customer')">Customer</button>
+            <button class="btn staff-btn" onclick="selectRole('staff')">Staff</button>
+        </div>
+
+        <p class="note">Please note that if you are a customer then click on customer</p>
+    </div>
+
+    <script>
+        function uploadProfile() {
+            document.getElementById("fileInput").click(); // Trigger file input click
+        }
+
+        function displayImage(input) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById("profileImage").src = e.target.result; // Change profile image
+            }
+            reader.readAsDataURL(input.files[0]); // Read the uploaded file
+        }
+
+        function selectRole(role) {
+            alert("Selected role: " + role); // Alert selected role
+        }
+    </script>
+</body>
+</html>

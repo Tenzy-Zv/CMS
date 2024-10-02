@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Canteen Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fbbf24;
+            display: flex;
+            justify-content: center; /* Centering the container */
+            align-items: center; /* Centering the container vertically */
+            min-height: 100vh; /* Full height */
+        }
+        .container {
+            max-width: 420px; /* Container width */
+            width: 100%; /* Allow container to be responsive */
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional shadow for better appearance */
+            border-radius: 10px; /* Rounded corners */
+            background-color: white; /* White background for content */
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two columns */
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px; /* Increased padding */
+            display: flex;
+            align-items: center;
+            height: 120px; /* Increased height */
+            flex-direction: row; /* Horizontal layout */
+            justify-content: space-between; /* Space between items */
+        }
+        .logo {
+            background-color: #fcd34d;
+            border-radius: 50%;
+            width: 100px; /* Increased size */
+            height: 100px; /* Increased size */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .orange-card, .red-card {
+            border-radius: 10px;
+            padding: 30px; /* Increased padding */
+            margin-bottom: 20px; /* Space below cards */
+            display: flex; /* Flex for inner content */
+            flex-direction: column; /* Column layout for text and image */
+            justify-content: center; /* Center content */
+            align-items: flex-start; /* Align items to the start */
+        }
+        .orange-card {
+            background-color: #fb923c; /* Background color */
+        }
+        .red-card {
+            background-color: #ef4444; /* Background color */
+            color: white; /* Text color */
+        }
+        .view-menu {
+            background-color: white;
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 10px;
+            display: inline-block;
+            float: right;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .navbar img {
+            width: 28px; /* Increased icon size */
+            height: 28px; /* Increased icon size */
+        }
+        /* New styles for larger images in cards */
+        .card img,
+        .orange-card img {
+            width: 120px; /* Increased size for food images */
+            height: 120px; /* Increased size for food images */
+            object-fit: cover; /* Ensures image fits well in the box */
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 480px) {
+            .container {
+                padding: 10px; /* Reduce padding on smaller screens */
+            }
+            .grid {
+                grid-template-columns: 1fr; /* One column layout */
+            }
+            .card, .orange-card, .red-card {
+                height: auto; /* Auto height */
+            }
+            .card img,
+            .orange-card img {
+                width: 80px; /* Adjust image size for smaller screens */
+                height: 80px; /* Adjust image size for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">        
+        <div class="grid">
+            <div class="card">
+                <img src="/htmls/pictures/food_image_without_background.png" alt="Food" style="margin-right:10px;">
+                <div>
+                    <strong>JNEC Canteen</strong><br>
+                    <img src="/htmls/pictures/coca_cola_without_background.png" alt="Coca Cola" style="height: 40px;">
+                </div>
+            </div>
+            <div class="logo">
+                <img src="/htmls/JNEC-Logo-100x100-1-removebg-preview.png" alt="Logo" style="width:100px;height:100px;">
+            </div>
+        </div>
+
+        <div class="orange-card">
+            <strong>Are you hungry? Come, order and fill your tummy :)</strong>
+            <div style="display:flex;align-items:center;margin-top:10px;">
+                <img src="/htmls/pictures/suja_without_background.png" alt="Suja" style="width:120px;height:120px;margin-right:20px;">
+                <strong>Suja with pokora</strong>
+            </div>
+        </div>
+
+        <div class="red-card">
+            <strong>Bring Your Friends To Eat. We Offer you good food to taste.</strong>
+            <div class="view-menu">
+                <img src="/api/placeholder/24/24" alt="Cart" style="width:24px;height:24px;vertical-align:middle;"> View menu
+            </div>
+        </div>
+
+        <div class="navbar">
+            <img src="/api/placeholder/24/24" alt="Home">
+            <img src="/api/placeholder/24/24" alt="Cart">
+            <img src="/api/placeholder/24/24" alt="Search">
+            <img src="/api/placeholder/24/24" alt="User">
+            <img src="/api/placeholder/24/24" alt="Settings">
+        </div>
+    </div>
+</body>
+</html>

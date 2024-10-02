@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 90%;
+    max-width: 400px;
+    background-color: white;
+    border-radius: 20px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+header {
+    background-color: #d4a125;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+}
+
+header h1 {
+    color: black;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.bell-icon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.bell-icon img {
+    width: 20px;
+}
+
+.profile-picture {
+    background-color: #d4a125;
+    text-align: center;
+    padding: 30px 0;
+    margin-bottom: 20px;
+}
+
+.profile-picture img {
+    width: 100px;
+    border-radius: 50%;
+}
+
+.profile-picture button {
+    background-color: white;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.profile-picture button:hover {
+    background-color: #f1f1f1;
+}
+
+.form {
+    padding: 0 20px;
+    margin-bottom: 20px;
+}
+
+.form input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background-color: #e0e0e0;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-around;
+    padding: 0 20px;
+}
+
+.btn {
+    width: 45%;
+    padding: 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.customer-btn {
+    background-color: #069728;
+    color: white;
+}
+
+.staff-btn {
+    background-color: #a90db8;
+    color: white;
+}
+
+.note {
+    text-align: center;
+    font-size: 12px;
+    color: #666;
+    margin-top: 20px;
+    padding: 0 20px;
+}
