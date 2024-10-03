@@ -1,0 +1,83 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0c040;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #f0c040;
+    border-radius: 10px;
+    padding: 20px;
+}
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+}
+.search-bar {
+    background-color: #fff;
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.search-bar input {
+    border: none;
+    flex-grow: 1;
+    font-size: 16px;
+}
+.food-item {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.food-item img {
+    width: 60px;
+    height: 60px;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+.food-info {
+    flex-grow: 1;
+}
+.food-name {
+    font-weight: bold;
+}
+.quantity-control {
+    display: flex;
+    align-items: center;
+}
+.quantity-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    cursor: pointer;
+}
+.quantity {
+    margin: 0 10px;
+}
+.order-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+}
+.total {
+    text-align: right;
+    font-weight: bold;
+    margin-top: 20px;
+}
