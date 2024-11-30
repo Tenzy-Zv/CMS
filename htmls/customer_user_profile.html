@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - Canteen Management System</title>
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #333;
+            padding-top: 60px;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-header {
+            background-color: #FFD700;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+            position: relative;
+            text-align: center;
+        }
+
+        .profile-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .profile-content {
+            background-color: white;
+            border-radius: 0 0 15px 15px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .profile-image {
+            width: 120px;
+            height: 120px;
+            background-color: #f0f0f0;
+            border-radius: 50%;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .profile-button {
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            background-color: #f0f0f0;
+            color: #333;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .profile-button:hover {
+            background-color: #e0e0e0;
+        }
+
+        .logout-button {
+            grid-column: 1 / -1;
+            background-color: #ff4444;
+            color: white;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .close {
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .submit-button:hover {
+            background-color: #45a049;
+        }
+
+        .navbar-nav li {
+            margin-left: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/htmls/Home_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/MyOrder.html">My Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_feedback.html">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="profile-header">
+            <div class="profile-title">User Profile</div>
+        </div>
+
+        <div class="profile-content">
+            <div class="profile-image">📷</div>
+            <div class="button-grid">
+                <button class="profile-button" onclick="openModal('nameModal')">Edit Name</button>
+                <button class="profile-button" onclick="openModal('phoneModal')">Edit Phone</button>
+                <button class="profile-button" onclick="openModal('passwordModal')">Change Password</button>
+                <button class="profile-button" onclick="openModal('feedbackModal')">Feedback</button>
+                <button class="profile-button logout-button" onclick="confirmLogout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modals -->
+    <!-- Name Modal -->
+    <div id="nameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Edit Name</div>
+                <span class="close" onclick="closeModal('nameModal')">&times;</span>
+            </div>
+            <form onsubmit="updateName(event)">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" required>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" required>
+                </div>
+                <button type="submit" class="submit-button">Update Name</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Phone Modal -->
+    <div id="phoneModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Edit Phone</div>
+                <span class="close" onclick="closeModal('phoneModal')">&times;</span>
+            </div>
+            <form onsubmit="updatePhone(event)">
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input type="text" id="phoneNumber" required>
+                </div>
+                <button type="submit" class="submit-button">Update Phone</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Password Modal -->
+    <div id="passwordModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Change Password</div>
+                <span class="close" onclick="closeModal('passwordModal')">&times;</span>
+            </div>
+            <form onsubmit="updatePassword(event)">
+                <div class="form-group">
+                    <label for="oldPassword">Old Password</label>
+                    <input type="password" id="oldPassword" required>
+                </div>
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" required>
+                </div>
+                <button type="submit" class="submit-button">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Feedback Modal -->
+    <div id="feedbackModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Submit Feedback</div>
+                <span class="close" onclick="closeModal('feedbackModal')">&times;</span>
+            </div>
+            <form onsubmit="submitFeedback(event)">
+                <div class="form-group">
+                    <label for="feedback">Feedback</label>
+                    <textarea id="feedback" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">Submit Feedback</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function updateName(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            alert('Name updated to: ' + firstName + ' ' + lastName);
+            closeModal('nameModal');
+        }
+
+        function updatePhone(event) {
+            event.preventDefault();
+            const phoneNumber = document.getElementById('phoneNumber').value;
+            const phoneRegex = /^(17|77)\d{6}$/;
+
+            if (!phoneRegex.test(phoneNumber)) {
+                alert("Phone number must start with 17 or 77 and contain exactly 8 digits.");
+            } else {
+                alert('Phone number updated to: ' + phoneNumber);
+                closeModal('phoneModal');
+            }
+        }
+
+        function updatePassword(event) {
+            event.preventDefault();
+            const oldPassword = document.getElementById('oldPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            alert('Password changed successfully.');
+            closeModal('passwordModal');
+        }
+
+        function submitFeedback(event) {
+            event.preventDefault();
+            const feedback = document.getElementById('feedback').value;
+            alert('Feedback submitted: ' + feedback);
+            closeModal('feedbackModal');
+        }
+
+        function confirmLogout() {
+            if (confirm('Are you sure you want to log out?')) {
+                alert('You have logged out.');
+                window.location.href = 'signup.html';
+            }
+        }
+    </script>
+
+</body>
+</html>

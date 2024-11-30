@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Interface</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            overflow: auto;
+            margin-top: 80px;
+            position: relative;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .search-bar {
+            margin-bottom: 15px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            flex: 1;
+            margin: 0 10px;
+            min-width: 200px;
+            max-width: 280px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            flex: 1 1 45%;
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+        <!-- Navigation Bar -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/htmls/Home_page.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">My Order</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/htmls/Staff_user_profile.html">My Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/htmls/customer_feedback.html">Feedback</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/htmls/Staff_user_profile.html">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    
+        <!-- Main Menu Content -->
+        <div class="container">
+            <div class="header">
+                <h1>Menu</h1>
+                <div class="header-icons">
+                    <!-- Add icons here if needed -->
+                </div>
+            </div>
+    
+            <div class="search-bar">
+                <input type="text" placeholder="Search">
+            </div>
+    
+            <div class="categories">
+                <div class="category">
+                    <div class="category-title">Drinks</div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/lassi.png" alt="Lassi">
+                            <p>Lassi</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/coffee.png" alt="Coffee">
+                            <p>Coffee</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/Ice coke.png" alt="Ice Coke">
+                            <p>IceCoke</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/MilkTea.png" alt="Milk tea">
+                            <p>MilkTea</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/suja.png" alt="Suja">
+                            <p>Suja</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="category">
+                    <div class="category-title">Fast Food</div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/chawmin.png" alt="Chawmin">
+                            <p>Chawmin</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/pokora.png" alt="Pokora">
+                            <p>Pokora</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/Chana.png" alt="Chana">
+                            <p>Chana</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/momo.png" alt="Momo">
+                            <p>Momo</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/puri.png" alt="Puri">
+                            <p>Puri</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/Omelette.png" alt="Omelette">
+                            <p>Omelette</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/fried rice.png" alt="Fried rice">
+                            <p>FriedRice</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="category">
+                    <div class="category-title">Rice & Curry</div>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/rice.png" alt="Rice">
+                            <p>Rice</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/chicken.png" alt="Chicken curry">
+                            <p>ChickenCurry</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/potato.png" alt="Potato curry">
+                            <p>PotatoCurry</p>
+                        </div>
+                        <div class="menu-item">
+                            <img src="/htmls/removedbg/ema datsi.png" alt="Ema datsi">
+                            <p>EmaDatsi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <script>
+        const drinksList = document.getElementById("drinksList");
+        const fastFoodList = document.getElementById("fastFoodList");
+        const riceCurryList = document.getElementById("riceCurryList");
+
+        function renderMenuItem(name, imageUrl, category) {
+            const item = document.createElement("div");
+            item.classList.add("menu-item");
+            item.innerHTML = `
+                <img src="${imageUrl}" alt="${name}">
+                <p>${name}</p>
+            `;
+            document.getElementById(`${category}List`).appendChild(item);
+        }
+
+        function loadItems() {
+            const categories = ["drinks", "fastFood", "riceCurry"];
+
+            categories.forEach(category => {
+                const storedItems = JSON.parse(localStorage.getItem(category)) || [];
+                storedItems.forEach(item => {
+                    renderMenuItem(item.name, item.imageUrl, category);
+                });
+            });
+        }
+
+        function filterItems() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const allItems = document.querySelectorAll(".menu-item");
+
+            allItems.forEach(item => {
+                const itemName = item.querySelector("p").textContent.toLowerCase();
+                item.style.display = itemName.includes(searchInput) ? "" : "none";
+            });
+        }
+
+        // Load items when the page loads
+        window.onload = loadItems;
+    </script>
+</body>
+</html>

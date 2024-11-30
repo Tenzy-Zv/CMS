@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View My Order</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 90%;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-item img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+
+        .order-details {
+            flex-grow: 1;
+        }
+
+        .total {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .back-button {
+            display: block;
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>My Orders</h1>
+        <div id="orderItems"></div>
+        <div class="total" id="totalAmount">Total Amount: $0.00</div>
+        <button class="back-button" onclick="window.location.href='menu.html'">Back to Menu</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderItems = document.getElementById('orderItems');
+            const totalAmount = document.getElementById('totalAmount');
+
+            // Retrieve selected items from local storage
+            const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+
+            // Example prices for menu items (you can modify this)
+            const itemPrices = {
+                chawmin: 30,
+                chickencurry: 130,
+                lassi: 50,
+                rice: 30,
+                potatocurry: 60,
+                coffee: 30,
+                pokora: 30,
+                icecoke: 50,
+                chana: 30,
+                milktea: 20,
+                momo: 30,
+                emadatsi: 60,
+                suja: 20,
+                puri: 30,
+                omelette: 30,
+                friedrice: 50
+            };
+
+            // Calculate total amount
+            let total = 0;
+
+            // Display items
+            if (selectedItems.length > 0) {
+                selectedItems.forEach(item => {
+                    const itemName = item.toLowerCase().replace(/ /g, '');
+                    const price = itemPrices[itemName] || 0;
+                    total += price;
+
+                    const orderItem = document.createElement('div');
+                    orderItem.className = 'order-item';
+
+                    orderItem.innerHTML = `
+                        <img src="/htmls/removedbg/${itemName}.png" alt="${item}">
+                        <div class="order-details">
+                            <p>${item}</p>
+                            <p>Price: $${price.toFixed(2)}</p>
+                        </div>
+                    `;
+
+                    orderItems.appendChild(orderItem);
+                });
+            } else {
+                orderItems.innerHTML = '<p>No orders found. Go back to the menu to place an order.</p>';
+            }
+
+            // Display total amount
+            totalAmount.innerHTML = `Total Amount: $${total.toFixed(2)}`;
+        });
+    </script>
+
+</body>
+</html>

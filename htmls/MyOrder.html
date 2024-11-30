@@ -1,84 +1,324 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="/Mini-project/my_order.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Order</title>
-    <link rel="stylesheet" href="/styles/MyOrder.css">
+    <title>Edit My Order</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-top: 80px; /* To make space for the navbar */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .remove-item {
+            color: red;
+            cursor: pointer;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .quantity-controls button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-controls button:hover {
+            background-color: #0056b3;
+        }
+
+        .total-amount {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* Button Styling */
+        .confirm-order {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .confirm-order:hover {
+            background-color: #218838;
+        }
+
+        .view-order {
+            background-color: #17a2b8;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .view-order:hover {
+            background-color: #138496;
+        }
+    </style>
+    <script>
+        async function submitOrder() {
+            const customerName = document.getElementById('customer-name').value;
+            const items = document.getElementById('items').value.split(',');
+            const comment = document.getElementById('comment').value;
+
+            const order = {
+                customerName,
+                items,
+                comment
+            };
+
+            const response = await fetch('http://localhost:3000/api/order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(order)
+            });
+
+            if (response.ok) {
+                alert('Order received!');
+            }
+        }
+    </script>
 </head>
 <body>
-    <header>
-        <h1>My Order</h1>
-        <div class="icons">
-            <span class="bell">🔔</span>
-            <span class="profile-circle">⚪</span>
-        </div>
-    </header>
 
-    <div class="search-bar">
-        <input type="text" placeholder="Search">
-    </div>
-
-    <!-- Suja Order -->
-    <section class="order-item">
-        <div class="item-details">
-            <img src="images/suja.png" alt="Suja">
-            <div class="item-info">
-                <h3>Suja</h3>
-                <p>Nu.30</p>
-                <div class="ingredients">
-                    <span>Butter</span>
-                    <span>Tea Leaf</span>
-                    <span>Salt</span>
-                </div>
-            </div>
-            <div class="item-actions">
-                <span class="quantity">1</span>
-                <button class="add-btn">+</button>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pokora Order -->
-    <section class="order-item">
-        <div class="item-details">
-            <img src="images/pokora.png" alt="Pokora">
-            <div class="item-info">
-                <h3>Pokora</h3>
-                <p>Nu.30</p>
-                <div class="ingredients">
-                    <span>Flour</span>
-                    <span>Onion</span>
-                    <span>Oil</span>
-                    <span>Salt</span>
-                    <span>Chilli</span>
-                </div>
-            </div>
-            <div class="item-actions">
-                <span class="quantity">1</span>
-                <button class="add-btn">+</button>
-            </div>
-        </div>
-    </section>
-
-    <div class="order-controls">
-        <button class="order-list-btn">Order List</button>
-        <p>View menu again</p>
-    </div>
-
-    <!-- Floating Add Button -->
-    <button class="floating-btn">+</button>
-
-    <footer>
-        <nav>
-            <ul>
-                <li>🏠</li>
-                <li>🛒</li>
-                <li>🔍</li>
-                <li>⚙</li>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/htmls/Home_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/MyOrder.html">My Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_feedback.html">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">Logout</a>
+                </li>
             </ul>
-        </nav>
-    </footer>
+        </div>
+    </nav>
+
+    <!-- Main Order Content -->
+    <div class="container">
+        <div class="header">
+            <h1>Edit My Order</h1>
+        </div>
+
+        <div class="menu-items" id="orderList"></div>
+        <div class="total-amount" id="totalAmount">Total Amount: $0.00</div>
+
+        <!-- Comment Section -->
+        <div class="form-group mt-4">
+            <label for="orderComment">Add a comment on your order:</label>
+            <textarea class="form-control" id="orderComment" rows="3" placeholder="Write your comment here..."></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <button class="confirm-order" id="confirmOrderButton">Confirm Order</button>
+        <button class="view-order" id="viewOrderButton">View Order</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const orderList = document.getElementById('orderList');
+            const confirmOrderButton = document.getElementById('confirmOrderButton');
+            const totalAmount = document.getElementById('totalAmount');
+            const viewOrderButton = document.getElementById('viewOrderButton');
+
+            // Retrieve selected items from local storage
+            const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
+
+            // Example prices for menu items (you can modify this)
+            const itemPrices = {
+                chawmin: 30,
+                chickencurry: 130,
+                lassi: 50,
+                rice: 30,
+                potatocurry: 60,
+                coffee: 30,
+                pokora: 30,
+                icecoke: 50,
+                chana: 30,
+                milktea: 20,
+                momo: 30,
+                emadatsi: 60,
+                suja: 20,
+                puri: 30,
+                omelette: 30,
+                friedrice: 50
+            };
+
+            // Calculate total amount
+            let total = 0;
+
+            // Display selected items
+            if (selectedItems.length > 0) {
+                selectedItems.forEach(item => {
+                    const menuItem = document.createElement('div');
+                    menuItem.className = 'menu-item';
+                    const itemName = item.toLowerCase().replace(/ /g, '');
+                    const price = itemPrices[itemName] || 0; // Get price based on item name
+                    total += price;
+
+                    menuItem.innerHTML = `
+                        <img src="/htmls/removedbg/${itemName}.png" alt="${item}">
+                        <p>${item} ($${price.toFixed(2)})</p>
+                        <div class="quantity-controls">
+                            <button class="decrease-quantity" data-item="${item}">-</button>
+                            <span class="quantity" data-item="${item}">1</span>
+                            <button class="increase-quantity" data-item="${item}">+</button>
+                            <span class="remove-item" data-item="${item}">Remove</span>
+                        </div>
+                    `;
+                    orderList.appendChild(menuItem);
+                });
+            } else {
+                orderList.innerHTML = '<p>No items selected. Go back to the menu to place an order.</p>';
+            }
+
+            // Update total amount display
+            totalAmount.innerHTML = `Total Amount: $${total.toFixed(2)}`;
+
+            // Remove item functionality
+            orderList.addEventListener('click', (event) => {
+                if (event.target.classList.contains('remove-item')) {
+                    const itemToRemove = event.target.getAttribute('data-item');
+                    const updatedItems = selectedItems.filter(item => item !== itemToRemove);
+                    localStorage.setItem('selectedItems', JSON.stringify(updatedItems));
+                    window.location.reload(); // Reload to refresh the list
+                }
+            });
+
+            // Change quantity functionality
+            orderList.addEventListener('click', (event) => {
+                const itemName = event.target.getAttribute('data-item');
+                const quantityElement = orderList.querySelector(`.quantity[data-item="${itemName}"]`);
+                const currentQuantity = parseInt(quantityElement.textContent);
+                const price = itemPrices[itemName.toLowerCase().replace(/ /g, '')] || 0; // Get price based on item name
+
+                if (event.target.classList.contains('increase-quantity')) {
+                    const newQuantity = currentQuantity + 1;
+                    quantityElement.textContent = newQuantity;
+                }
+
+                if (event.target.classList.contains('decrease-quantity') && currentQuantity > 1) {
+                    const newQuantity = currentQuantity - 1;
+                    quantityElement.textContent = newQuantity;
+                }
+
+                // Recalculate total amount
+                total = 0;
+                selectedItems.forEach(item => {
+                    const itemQuantity = parseInt(orderList.querySelector(`.quantity[data-item="${item}"]`).textContent);
+                    total += itemQuantity * (itemPrices[item.toLowerCase().replace(/ /g, '')] || 0);
+                });
+
+                totalAmount.innerHTML = `Total Amount: $${total.toFixed(2)}`;
+            });
+
+            // Confirm order button functionality
+            confirmOrderButton.addEventListener('click', () => {
+                if (selectedItems.length > 0) {
+                    const comment = document.getElementById('orderComment').value;
+                    alert(`Order confirmed! Thank you for your purchase! Your comment: "${comment}"`);
+                    localStorage.removeItem('selectedItems'); // Clear selected items
+                    window.location.href = 'menu.html'; // Redirect to menu
+                } else {
+                    alert('Please select items to order.');
+                }
+            });
+
+            // View order button functionality
+            viewOrderButton.addEventListener('click', () => {
+                window.location.href = 'view_order.html'; // Redirect to view order page
+            });
+        });
+    </script>
+
 </body>
 </html>

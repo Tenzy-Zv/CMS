@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Feedback</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            padding: 20px;
+            margin-top: 80px; /* To create space for navbar */
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #e7dada;
+        }
+
+        .feedback-section {
+            flex-grow: 1;
+        }
+
+        .intro-text p {
+            background-color: #f9df57;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 1.1em;
+            text-align: center;
+        }
+
+        .feedback-box {
+            background-color: #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .feedback-input {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .input-box {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        textarea {
+            width: 70%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            font-size: 1em;
+        }
+
+        .send-button {
+            background-color: #3b7a40;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/1st_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/MyOrder.html">My Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">My Profile</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="/htmls/customer_feedback.html">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <header>
+            <h1>Feedback</h1>
+        </header>
+        <section class="feedback-section">
+            <div class="intro-text">
+                <p>Give us genuine feedback for improvements</p>
+            </div>
+            <div class="feedback" id="feedback-list">
+                <p class="feedback-box">"The food here is absolutely delicious!"</p>
+                <p class="feedback-box">I feel the prices are a bit high for the portion sizes we get.</p>
+                <p class="feedback-box">I had trouble finding a seat because the canteen was very crowded</p>
+            </div>
+            <div class="feedback-input">
+                <p>The platform is yours if you want to add feedback</p>
+                <div class="input-box">
+                    <textarea id="feedback-text" placeholder="Write your feedback here..."></textarea>
+                    <button class="send-button" onclick="submitFeedback()">Send</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Include Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        function submitFeedback() {
+            var feedbackText = document.getElementById("feedback-text").value;
+            if (feedbackText.trim() !== "") {
+                var feedbackList = document.getElementById("feedback-list");
+                var newFeedback = document.createElement("p");
+                newFeedback.classList.add("feedback-box");
+                newFeedback.textContent = feedbackText;
+                feedbackList.appendChild(newFeedback);
+                document.getElementById("feedback-text").value = "";
+            } else {
+                alert("Please write some feedback before submitting.");
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,53 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Canteen Management System</title>
+    <!-- Add Bootstrap CSS for Navbar -->
+    <link href="/bootstrap/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fbbf24;
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
         }
+
         .container {
             max-width: 420px;
             width: 100%;
             padding: 20px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-top: 70px; /* Adjust for fixed navbar */
         }
+
         .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
         }
+
         .card {
-            background-color: white;
-            border-radius: 10px;
-            padding: 20px;
             display: flex;
             align-items: center;
-            height: 120px;
-            justify-content: space-between;
         }
-        .logo {
-            background-color: #ffffff;
-            border-radius: 50%;
+
+        .card img {
             width: 100px;
             height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            margin-right: 20px;
         }
-        .orange-card, .red-card {
+
+        .card h2 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .logo img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        .orange-card,
+        .red-card {
             border-radius: 10px;
             padding: 30px;
             margin-bottom: 20px;
@@ -56,13 +71,16 @@
             justify-content: center;
             align-items: center;
         }
+
         .orange-card {
             background-color: #fb923c;
         }
+
         .red-card {
             background-color: #ef4444;
             color: white;
         }
+
         .view-menu {
             background-color: white;
             color: black;
@@ -72,33 +90,23 @@
             margin-top: 10px;
             display: inline-block;
         }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-        .navbar img {
-            width: 28px;
-            height: 28px;
-        }
-        .card img,
-        .orange-card img {
-            width: 150px;
-            height: 120px;
-            object-fit: cover;
-        }
 
         /* Media queries for responsiveness */
         @media (max-width: 480px) {
             .container {
                 padding: 10px;
             }
+
             .grid {
-                grid-template-columns: 1fr;
+                flex-direction: column;
             }
-            .card, .orange-card, .red-card {
+
+            .card,
+            .orange-card,
+            .red-card {
                 height: auto;
             }
+
             .card img,
             .orange-card img {
                 width: 80px;
@@ -107,43 +115,71 @@
         }
     </style>
 </head>
-    <body>
-        <div class="container">        
-            <div class="grid">
-                <div class="card">
-                    <img src="/htmls/removedbg/sikam.png" alt="Food">
-                    <div>
-                        <h2><strong>JNEC Canteen</strong></h2>
-                    </div>
-                </div>
-                <div class="logo">
-                    <img src="/htmls/JNEC-Logo-100x100-1-removebg-preview.png" alt="Logo">
-                </div>
-            </div>
 
-            <div class="orange-card">
-                <strong>Are you hungry? Come, order and fill your tummy :)</strong>
-                <div style="display:flex;align-items:center;margin-top:10px;">
-                    <img src="/htmls/removedbg/suja.png" alt="Suja" style="width:120px;height:100px;margin-right:20px;">
-                    <img src="/htmls/removedbg/pokora.png" alt="Suja" style="width:120px;height:80px;margin-right:20px;">
-                    <strong>Suja with Pokora</strong>
-                </div>
-            </div>
+<body>
 
-            <div class="red-card">
-                <strong>Bring Your Friends To Eat. We Offer you good food to taste.</strong>
-                <div class="view-menu">
-                    <img src="/htmls/removedbg/pngtree-order-now-icon-png-image_9115829-removebg-preview.png" alt="Cart" style="width:24px;height:24px;vertical-align:middle;"> View menu
-                </div>
-            </div>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/htmls/Home_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="menu.html">Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/MyOrder.html">My Order</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_user_profile.html">My Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/customer_feedback.html">Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-            <div class="navbar">
-                <img src="/htmls/removedbg/home icon.png" alt="Home">
-                <img src="/htmls/removedbg/shop icon.png" alt="Cart">
-                <img src="/htmls/removedbg/search.png" alt="Search">
-                <img src="/htmls/removedbg/png-transparent-user-profile-computer-icons-profile-heroes-black-silhouette-thumbnail-removebg-preview.png" alt="User">
-                <img src="/htmls/removedbg/setting icon.png" alt="Settings">
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <img src="/htmls/removedbg/sikam.png" alt="Food">
+                <h2><strong>JNEC Canteen</strong></h2>
+            </div>
+            <div class="logo">
+                <img src="/htmls/JNEC-Logo-100x100-1-removebg-preview.png" alt="Logo">
             </div>
         </div>
-    </body>
+
+        <div class="orange-card">
+            <strong>Are you hungry? Come, order and fill your tummy :)</strong>
+            <div style="display:flex;align-items:center;margin-top:10px;">
+                <img src="/htmls/removedbg/suja.png" alt="Suja" style="width:120px;height:100px;margin-right:20px;">
+                <img src="/htmls/removedbg/pokora.png" alt="Suja" style="width:120px;height:80px;margin-right:20px;">
+                <strong>Suja with Pokora</strong>
+            </div>
+        </div>
+
+        <div class="red-card">
+            <strong>Bring Your Friends To Eat. We Offer you good food to taste.</strong>
+            <div class="view-menu">
+                <button class="btn customer-btn" onclick="window.location.href='menu.html';">view-menu</button>
+                <img src="/htmls/removedbg/pngtree-order-now-icon-png-image_9115829-removebg-preview.png" alt="Cart" style="width:24px;height:24px;vertical-align:middle;">
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Bootstrap JS and dependencies -->
+    <script src="/bootstrap/bootstrap.bundle.js"></script>
+    <script src="/bootstrap/bootstrap.min.js"></script>
+    <script src="/bootstrap/all.js"></script>
+</body>
+
 </html>

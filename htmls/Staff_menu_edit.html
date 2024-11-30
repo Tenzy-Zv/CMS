@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Interface - Manage Menu</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            overflow: auto;
+            margin-top: 80px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .edit-menu-button {
+            background-color: #007bff;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .edit-menu-button:hover {
+            background-color: #0056b3;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+
+        .category {
+            flex: 1;
+            margin: 0 10px;
+            min-width: 200px;
+            max-width: 280px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            flex: 1 1 45%;
+            cursor: pointer;
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        /* Form Styling */
+        .add-item-form {
+            margin-top: 20px;
+        }
+
+        .form-control {
+            margin-bottom: 10px;
+        }
+
+        .add-button {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <h1>Manage Menu</h1>
+            <button class="edit-menu-button" onclick="window.location.href='C:\Users\tenzyy\CMS\htmls\staff_home_page.html'">Edit Menu</button>
+        </div>
+
+        <div class="categories">
+            <!-- Drinks Section -->
+            <div class="category">
+                <div class="category-title">Drinks</div>
+                <div class="menu-items" id="drinksList">
+                    <!-- Predefined items, dynamically updated with JavaScript -->
+                </div>
+            </div>
+
+            <!-- Fast Food Section -->
+            <div class="category">
+                <div class="category-title">Fast Food</div>
+                <div class="menu-items" id="fastFoodList">
+                    <!-- Predefined items, dynamically updated with JavaScript -->
+                </div>
+            </div>
+
+            <!-- Rice and Curry Section -->
+            <div class="category">
+                <div class="category-title">Rice and Curry</div>
+                <div class="menu-items" id="riceCurryList">
+                    <!-- Predefined items, dynamically updated with JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Add Item Form -->
+        <div class="add-item-form">
+            <h3>Add New Item</h3>
+            <select class="form-control" id="categorySelect">
+                <option value="drinks">Drinks</option>
+                <option value="fastFood">Fast Food</option>
+                <option value="riceCurry">Rice and Curry</option>
+            </select>
+            <input type="text" class="form-control" id="itemName" placeholder="Enter item name" required>
+            <input type="file" class="form-control" id="itemImage" accept="image/*" required>
+            <button type="button" class="add-button" onclick="addItem()">Add Item</button>
+        </div>
+    </div>
+
+    <script>
+        const drinksList = document.getElementById("drinksList");
+        const fastFoodList = document.getElementById("fastFoodList");
+        const riceCurryList = document.getElementById("riceCurryList");
+
+        function renderItem(name, imageUrl, list) {
+            const item = document.createElement("div");
+            item.classList.add("menu-item");
+
+            item.innerHTML = `
+                <img src="${imageUrl}" alt="${name}">
+                <p>${name}</p>
+                <input type="number" class="form-control" placeholder="Enter amount" min="1">
+                <button class="add-button" onclick="alert('${name} added to the menu!')">Save Changes</button>
+            `;
+            list.appendChild(item);
+        }
+
+        function addItem() {
+            const category = document.getElementById("categorySelect").value;
+            const itemName = document.getElementById("itemName").value;
+            const fileInput = document.getElementById("itemImage");
+
+            if (itemName && fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+
+                reader.onload = function (event) {
+                    let list;
+                    switch (category) {
+                        case "drinks":
+                            list = drinksList;
+                            break;
+                        case "fastFood":
+                            list = fastFoodList;
+                            break;
+                        case "riceCurry":
+                            list = riceCurryList;
+                            break;
+                        default:
+                            return; // Do nothing if category is invalid
+                    }
+                    renderItem(itemName, event.target.result, list);
+
+                    // Save to localStorage
+                    const existingItems = JSON.parse(localStorage.getItem(category)) || [];
+                    existingItems.push({ name: itemName, imageUrl: event.target.result });
+                    localStorage.setItem(category, JSON.stringify(existingItems));
+
+                    // Clear input fields after adding
+                    document.getElementById("itemName").value = "";
+                    fileInput.value = ""; // Clear the file input
+                };
+
+                reader.readAsDataURL(file); // Convert the file to Base64 URL
+            } else {
+                alert("Please enter the item name and select an image.");
+            }
+        }
+    </script>
+</body>
+</html>
