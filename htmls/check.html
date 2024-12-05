@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Interface</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 90%;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            margin-top: 80px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        .search-bar {
+            margin-bottom: 15px;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .categories {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            flex: 1;
+            margin: 0 10px;
+            min-width: 200px;
+        }
+
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .menu-item {
+            background-color: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            flex: 1 1 45%;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            margin-bottom: 5px;
+        }
+
+        .saved {
+            background-color: #d4edda;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/htmls/Staff_menu_edit.html">MENU</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff_home_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff_menu_edit.html">Manage Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff-VIEW_FEEDBack.html">View Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/Staff_user_profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header">
+            <h1>Menu</h1>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search" oninput="filterItems()">
+        </div>
+
+        <div class="categories" id="menuCategories">
+            <!-- Categories will be dynamically loaded here -->
+        </div>
+    </div>
+
+    <script>
+        // Initial menu data structure
+        const menuData = {
+            "Drinks": [
+                { name: "Lassi", image: "/htmls/removedbg/lassi.png" },
+                { name: "Coffee", image: "/htmls/removedbg/coffee.png" },
+                { name: "Ice Coke", image: "/htmls/removedbg/Ice_coke.png" },
+                { name: "Milk Tea", image: "/htmls/removedbg/MilkTea.png" },
+                { name: "Suja", image: "/htmls/removedbg/suja.png" }
+            ],
+            "Fast Food": [
+                { name: "Chawmin", image: "/htmls/removedbg/chawmin.png" },
+                { name: "Pokora", image: "/htmls/removedbg/pokora.png" },
+                { name: "Chana", image: "/htmls/removedbg/Chana.png" },
+                { name: "Momo", image: "/htmls/removedbg/momo.png" },
+                { name: "Puri", image: "/htmls/removedbg/puri.png" }
+            ],
+            "Rice & Curry": [
+                { name: "Rice", image: "/htmls/removedbg/rice.png" },
+                { name: "Chicken Curry", image: "/htmls/removedbg/chicken.png" },
+                { name: "Potato Curry", image: "/htmls/removedbg/potato.png" },
+                { name: "Ema Datsi", image: "/htmls/removedbg/ema_datsi.png" }
+            ]
+        };
+
+        // Load menu items on page load
+        function loadMenu() {
+            const menuCategories = document.getElementById("menuCategories");
+            for (const category in menuData) {
+                const categoryDiv = document.createElement("div");
+                categoryDiv.classList.add("category");
+                categoryDiv.innerHTML = `<div class="category-title">${category}</div><div class="menu-items"></div>`;
+
+                menuData[category].forEach(item => {
+                    const menuItemDiv = document.createElement("div");
+                    menuItemDiv.classList.add("menu-item");
+                    menuItemDiv.innerHTML = `<img src="${item.image}" alt="${item.name}"><p>${item.name}</p>`;
+                    categoryDiv.querySelector(".menu-items").appendChild(menuItemDiv);
+                });
+                menuCategories.appendChild(categoryDiv);
+            }
+        }
+
+        // Filters menu items based on the search input
+        function filterItems() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const allItems = document.querySelectorAll(".menu-item");
+
+            allItems.forEach(item => {
+                const itemName = item.querySelector("p").textContent.toLowerCase();
+                item.style.display = itemName.includes(searchInput) ? "" : "none";
+            });
+        }
+
+        // Load stored items from localStorage and render saved items if required
+        window.onload = function() {
+            loadMenu();
+        };
+    </script>
+</body>
+
+</html>

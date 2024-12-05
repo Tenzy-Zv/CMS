@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Order</title>
+    <link rel="stylesheet" href="/styles/EditOrder.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Order</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Search">
+        </div>
+        <div class="food-item">
+            <img src="/htmls/removedbg/suja.png" alt="Suja">
+            <div class="food-info">
+                <div class="food-name">Suja</div>
+                <div>Nu.30</div>
+            </div>
+            <div class="quantity-control">
+                <button class="quantity-btn" onclick="updateQuantity('suja', -1)">-</button>
+                <span class="quantity" id="suja-quantity">1</span>
+                <button class="quantity-btn" onclick="updateQuantity('suja', 1)">+</button>
+            </div>
+        </div>
+        <div class="food-item">
+            <img src="/htmls/removedbg/pokora.png" alt="Pokora">
+            <div class="food-info">
+                <div class="food-name">Pokora</div>
+                <div>Nu.30</div>
+            </div>
+            <div class="quantity-control">
+                <button class="quantity-btn" onclick="updateQuantity('pokora', -1)">-</button>
+                <span class="quantity" id="pokora-quantity">1</span>
+                <button class="quantity-btn" onclick="updateQuantity('pokora', 1)">+</button>
+            </div>
+        </div>
+        <div>wait until canteen staff responds</div>
+        <button class="order-btn">Order</button>
+        <div class="total">Total Amount: Nu.<span id="total-amount">60</span></div>
+    </div>
+
+    <script>
+        const items = {
+            suja: { price: 30, quantity: 1 },
+            pokora: { price: 30, quantity: 1 }
+        };
+
+        function updateQuantity(item, change) {
+            items[item].quantity = Math.max(0, items[item].quantity + change);
+            document.getElementById(`${item}-quantity`).textContent = items[item].quantity;
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const total = Object.values(items).reduce((sum, item) => sum + item.price * item.quantity, 0);
+            document.getElementById('total-amount').textContent = total;
+        }
+    </script>
+</body>
+</html>

@@ -121,7 +121,7 @@
                 <p>Give us genuine feedback for improvements</p>
             </div>
             <div class="feedback" id="feedback-list">
-                <p class="feedback-box">"The food here is absolutely delicious!"</p>
+                <p class="feedback-box"></p>
                 <p class="feedback-box">I feel the prices are a bit high for the portion sizes we get.</p>
                 <p class="feedback-box">I had trouble finding a seat because the canteen was very crowded</p>
             </div>
@@ -150,6 +150,16 @@
                 newFeedback.textContent = feedbackText;
                 feedbackList.appendChild(newFeedback);
                 document.getElementById("feedback-text").value = "";
+                var feedbackList = JSON.parse(localStorage.getItem('feedback')) || [];
+                // Add the new feedback to the list
+                feedbackList.push(feedbackText);
+                // Save the updated feedback list to localStorage
+                localStorage.setItem('feedback', JSON.stringify(feedbackList));
+                
+                // Clear the textarea
+                document.getElementById("feedback-text").value = "";
+                alert("Feedback submitted successfully!");
+                
             } else {
                 alert("Please write some feedback before submitting.");
             }

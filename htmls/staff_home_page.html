@@ -6,14 +6,12 @@
     <title>Menu Interface</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body {
+           body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            background-color: #f8f9fa;
+            background-image: url("/htmls/JNEC-Logo-100x100-1-removebg-preview.png");
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,12 +22,10 @@
             max-width: 900px;
             width: 90%;
             padding: 15px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
             background-color: rgba(255, 255, 255, 0.8);
-            overflow: auto;
             margin-top: 80px;
-            position: relative;
         }
 
         .header {
@@ -65,7 +61,6 @@
             flex: 1;
             margin: 0 10px;
             min-width: 200px;
-            max-width: 280px;
         }
 
         .category-title {
@@ -86,6 +81,13 @@
             padding: 10px;
             text-align: center;
             flex: 1 1 45%;
+            position: relative;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .menu-item.selected {
+            background-color: rgba(0, 120, 250, 0.25);
         }
 
         .menu-item img {
@@ -94,160 +96,157 @@
             object-fit: cover;
             margin-bottom: 5px;
         }
+
+        .saved {
+            background-color: #d4edda;
+        }
+
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
     </style>
 </head>
 <body>
-        <!-- Navigation Bar -->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="/htmls/Home_page.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">My Order</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/htmls/Staff_user_profile.html">My Profile</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/htmls/customer_feedback.html">Feedback</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/htmls/Staff_user_profile.html">Logout</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    
-        <!-- Main Menu Content -->
-        <div class="container">
-            <div class="header">
-                <h1>Menu</h1>
-                <div class="header-icons">
-                    <!-- Add icons here if needed -->
-                </div>
-            </div>
-    
-            <div class="search-bar">
-                <input type="text" placeholder="Search">
-            </div>
-    
-            <div class="categories">
-                <div class="category">
-                    <div class="category-title">Drinks</div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/lassi.png" alt="Lassi">
-                            <p>Lassi</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/coffee.png" alt="Coffee">
-                            <p>Coffee</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/Ice coke.png" alt="Ice Coke">
-                            <p>IceCoke</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/MilkTea.png" alt="Milk tea">
-                            <p>MilkTea</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/suja.png" alt="Suja">
-                            <p>Suja</p>
-                        </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/htmls/Staff_menu_edit.html">MENU</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff_home_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff_menu_edit.html">Manage Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff-VIEW_FEEDBack.html">View Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/Staff_user_profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <h1>Menu</h1>
+        </div>
+
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search" oninput="filterItems()">
+        </div>
+
+        <div class="categories">
+            <div class="category" id="drinksList">
+                <div class="category-title">Drinks</div>
+                <div class="menu-items">
+                    <div class="menu-item" onclick="selectItem(this, 'Lassi', 'path/to/lassi.png')">
+                        <img src="/htmls/removedbg/lassi.png" alt="Lassi">
+                        <p>Lassi</p>
                     </div>
-                </div>
-    
-                <div class="category">
-                    <div class="category-title">Fast Food</div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/chawmin.png" alt="Chawmin">
-                            <p>Chawmin</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/pokora.png" alt="Pokora">
-                            <p>Pokora</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/Chana.png" alt="Chana">
-                            <p>Chana</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/momo.png" alt="Momo">
-                            <p>Momo</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/puri.png" alt="Puri">
-                            <p>Puri</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/Omelette.png" alt="Omelette">
-                            <p>Omelette</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/fried rice.png" alt="Fried rice">
-                            <p>FriedRice</p>
-                        </div>
+                    <div class="menu-item" onclick="selectItem(this, 'Coffee', 'path/to/coffee.png')">
+                        <img src="/htmls/removedbg/coffee.png" alt="Coffee">
+                        <p>Coffee</p>
                     </div>
-                </div>
-    
-                <div class="category">
-                    <div class="category-title">Rice & Curry</div>
-                    <div class="menu-items">
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/rice.png" alt="Rice">
-                            <p>Rice</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/chicken.png" alt="Chicken curry">
-                            <p>ChickenCurry</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/potato.png" alt="Potato curry">
-                            <p>PotatoCurry</p>
-                        </div>
-                        <div class="menu-item">
-                            <img src="/htmls/removedbg/ema datsi.png" alt="Ema datsi">
-                            <p>EmaDatsi</p>
-                        </div>
+                    <div class="menu-item" onclick="selectItem(this, 'IceCoke', 'path/to/icecoke.png')">
+                        <img src="/htmls/removedbg/Ice coke.png" alt="Ice Coke">
+                        <p>IceCoke</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'MilkTea', 'path/to/milktea.png')">
+                        <img src="/htmls/removedbg/MilkTea.png" alt="Milk Tea">
+                        <p>MilkTea</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'Suja', 'path/to/suja.png')">
+                        <img src="/htmls/removedbg/suja.png" alt="Suja">
+                        <p>Suja</p>
                     </div>
                 </div>
             </div>
+
+            <div class="category" id="fastFoodList">
+                <div class="category-title">Fast Food</div>
+                <div class="menu-items">
+                    <div class="menu-item" onclick="selectItem(this, 'Chawmin', 'path/to/chawmin.png')">
+                        <img src="/htmls/removedbg/chawmin.png" alt="Chawmin">
+                        <p>Chawmin</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'Pokora', 'path/to/pokora.png')">
+                        <img src="/htmls/removedbg/pokora.png" alt="Pokora">
+                        <p>Pokora</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'Chana', 'path/to/chana.png')">
+                        <img src="/htmls/removedbg/Chana.png" alt="Chana">
+                        <p>Chana</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'Momo', 'path/to/momo.png')">
+                        <img src="/htmls/removedbg/momo.png" alt="Momo">
+                        <p>Momo</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'Puri', 'path/to/puri.png')">
+                        <img src="/htmls/removedbg/puri.png" alt="Puri">
+                        <p>Puri</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category" id="riceCurryList">
+                <div class="category-title">Rice & Curry</div>
+                <div class="menu-items">
+                    <div class="menu-item" onclick="selectItem(this, 'Rice', 'path/to/rice.png')">
+                        <img src="/htmls/removedbg/rice.png" alt="Rice">
+                        <p>Rice</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'ChickenCurry', 'path/to/chicken.png')">
+                        <img src="/htmls/removedbg/chicken.png" alt="Chicken Curry">
+                        <p>ChickenCurry</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'PotatoCurry', 'path/to/potato.png')">
+                        <img src="/htmls/removedbg/potato.png" alt="Potato Curry">
+                        <p>PotatoCurry</p>
+                    </div>
+                    <div class="menu-item" onclick="selectItem(this, 'EmaDatsi', 'path/to/ema.png')">
+                        <img src="/htmls/removedbg/ema datsi.png" alt="Ema Datsi">
+                        <p>EmaDatsi</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="action-buttons">
+            <button class="btn btn-success" id="saveButton" onclick="saveSelectedItems()">Save</button>
+            <button class="btn btn-danger" id="deleteButton" onclick="deleteSelectedItems()">Delete</button>
+        </div>
+    </div>
+
     <script>
-        const drinksList = document.getElementById("drinksList");
-        const fastFoodList = document.getElementById("fastFoodList");
-        const riceCurryList = document.getElementById("riceCurryList");
+        const selectedItems = new Set(); // Track selected items
 
-        function renderMenuItem(name, imageUrl, category) {
-            const item = document.createElement("div");
-            item.classList.add("menu-item");
-            item.innerHTML = `
-                <img src="${imageUrl}" alt="${name}">
-                <p>${name}</p>
-            `;
-            document.getElementById(`${category}List`).appendChild(item);
+        function selectItem(item) {
+            if (selectedItems.has(item)) {
+                selectedItems.delete(item); // Deselect if already selected
+                item.classList.remove('selected');
+            } else {
+                selectedItems.add(item); // Select the item
+                item.classList.add('selected');
+            }
+            updateButtonState();
         }
 
-        function loadItems() {
-            const categories = ["drinks", "fastFood", "riceCurry"];
-
-            categories.forEach(category => {
-                const storedItems = JSON.parse(localStorage.getItem(category)) || [];
-                storedItems.forEach(item => {
-                    renderMenuItem(item.name, item.imageUrl, category);
-                });
-            });
+        // Updates which buttons should be enabled or disabled
+        function updateButtonState() {
+            // Enable save button if there are new items selected to save
+            document.getElementById('saveButton').disabled = selectedItems.size === 0;
+            document.getElementById('deleteButton').disabled = selectedItems.size === 0;
         }
 
+        // Filters menu items based on search input
         function filterItems() {
             const searchInput = document.getElementById("searchInput").value.toLowerCase();
             const allItems = document.querySelectorAll(".menu-item");
@@ -255,11 +254,99 @@
             allItems.forEach(item => {
                 const itemName = item.querySelector("p").textContent.toLowerCase();
                 item.style.display = itemName.includes(searchInput) ? "" : "none";
+                item.classList.remove('selected'); // Deselect item when filtering
             });
+            selectedItems.clear(); // Clear selection when searching
+            updateButtonState(); // Update button state based on the filtered items
         }
 
-        // Load items when the page loads
-        window.onload = loadItems;
+        // Saves selected menu items in localStorage
+        function saveSelectedItems() {
+            if (selectedItems.size === 0) {
+                alert("Please select at least one item to save.");
+                return;
+            }
+
+            selectedItems.forEach(item => {
+                const name = item.querySelector('p').textContent;
+                const category = item.closest('.category').id.replace('List', '');
+                const imageUrl = item.querySelector('img').src;
+
+                let storedItems = JSON.parse(localStorage.getItem(category)) || [];
+
+                // Only save if item is not already saved
+                if (!storedItems.some(storedItem => storedItem.name === name)) {
+                    storedItems.push({ name, imageUrl });
+                    localStorage.setItem(category, JSON.stringify(storedItems));
+                    alert(`${name} saved!`);
+                    item.classList.add('saved'); // Highlight saved item
+                } else {
+                    alert(`${name} is already saved.`);
+                }
+            });
+
+            selectedItems.clear(); // Clear selection post saving
+            updateButtonState(); // Update button state after saving
+        }
+
+        // Deletes selected menu items from the display and localStorage
+        function deleteSelectedItems() {
+            if (selectedItems.size === 0) {
+                alert("Please select at least one item to delete.");
+                return;
+            }
+
+            selectedItems.forEach(item => {
+                const name = item.querySelector('p').textContent;
+                const category = item.closest('.category').id.replace('List', '');
+
+                let storedItems = JSON.parse(localStorage.getItem(category)) || [];
+                const index = storedItems.findIndex(storedItem => storedItem.name === name);
+
+                if (index !== -1) {
+                    // Remove item from displayed menu
+                    item.remove();
+                    storedItems.splice(index, 1); // Remove from stored items
+                    alert(`${name} deleted!`); // Notify the user
+                    localStorage.setItem(category, JSON.stringify(storedItems)); // Update localStorage
+                } else {
+                    alert(`${name} is not saved and cannot be deleted.`);
+                }
+            });
+
+            // Clear the selected items
+            selectedItems.clear();
+            updateButtonState(); // Update button state after deleting
+        }
+
+        // Load items from localStorage on page load and mark saved items
+        window.onload = function () {
+            const categories = ["drinks", "fastFood", "riceCurry"];
+
+            categories.forEach(category => {
+                const storedItems = JSON.parse(localStorage.getItem(category)) || [];
+                storedItems.forEach(item => {
+                    renderMenuItem(item.name, item.imageUrl, category, true);
+                });
+            });
+        };
+
+        // Renders a menu item dynamically
+        function renderMenuItem(name, imageUrl, category, isSaved = false) {
+            const item = document.createElement("div");
+            item.classList.add("menu-item");
+            item.onclick = function () {
+                selectItem(item);
+            };
+            item.innerHTML = `
+                <img src="${imageUrl}" alt="${name}">
+                <p>${name}</p>
+            `;
+            if (isSaved) {
+                item.classList.add('saved');
+            }
+            document.getElementById(`${category}List`).querySelector(".menu-items").appendChild(item);
+        }
     </script>
 </body>
 </html>

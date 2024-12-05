@@ -6,6 +6,8 @@
     <title>Edit My Order</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        /* Add your existing styles here... */
+        /* Example styles below */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
@@ -19,7 +21,10 @@
             align-items: center;
             min-height: 100vh;
         }
-
+        .menu-item img {
+         max-width: 100px;  /* Adjust this value to your preferred size */
+        height: auto;
+        }
         .container {
             max-width: 900px;
             width: 90%;
@@ -37,10 +42,6 @@
             margin-bottom: 15px;
         }
 
-        .header h1 {
-            margin: 0;
-        }
-
         .menu-items {
             display: flex;
             flex-direction: column;
@@ -54,13 +55,6 @@
             text-align: center;
             cursor: pointer;
             transition: background-color 0.3s ease;
-        }
-
-        .menu-item img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover;
-            margin-bottom: 5px;
         }
 
         .remove-item {
@@ -85,17 +79,12 @@
             margin: 0 5px;
         }
 
-        .quantity-controls button:hover {
-            background-color: #0056b3;
-        }
-
         .total-amount {
             font-size: 18px;
             font-weight: bold;
             margin-top: 20px;
         }
 
-        /* Button Styling */
         .confirm-order {
             background-color: #28a745;
             color: white;
@@ -126,34 +115,8 @@
             background-color: #138496;
         }
     </style>
-    <script>
-        async function submitOrder() {
-            const customerName = document.getElementById('customer-name').value;
-            const items = document.getElementById('items').value.split(',');
-            const comment = document.getElementById('comment').value;
-
-            const order = {
-                customerName,
-                items,
-                comment
-            };
-
-            const response = await fetch('http://localhost:3000/api/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(order)
-            });
-
-            if (response.ok) {
-                alert('Order received!');
-            }
-        }
-    </script>
 </head>
 <body>
-
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,7 +125,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/htmls/Home_page.html">Home</a>
+                    <a class="nav-link" href="/htmls/1st_page.html">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="menu.html">Menu</a>
@@ -190,7 +153,7 @@
         </div>
 
         <div class="menu-items" id="orderList"></div>
-        <div class="total-amount" id="totalAmount">Total Amount: $0.00</div>
+        <div class="total-amount" id="totalAmount">Total Amount: Nu.0.00</div>
 
         <!-- Comment Section -->
         <div class="form-group mt-4">
@@ -200,7 +163,7 @@
 
         <!-- Buttons -->
         <button class="confirm-order" id="confirmOrderButton">Confirm Order</button>
-        <button class="view-order" id="viewOrderButton">View Order</button>
+        <!-- <button class="view-order" id="viewOrderButton">View Order</button> -->
     </div>
 
     <script>
@@ -213,7 +176,7 @@
             // Retrieve selected items from local storage
             const selectedItems = JSON.parse(localStorage.getItem('selectedItems')) || [];
 
-            // Example prices for menu items (you can modify this)
+            // Example prices for menu items
             const itemPrices = {
                 chawmin: 30,
                 chickencurry: 130,
@@ -242,7 +205,7 @@
                     const menuItem = document.createElement('div');
                     menuItem.className = 'menu-item';
                     const itemName = item.toLowerCase().replace(/ /g, '');
-                    const price = itemPrices[itemName] || 0; // Get price based on item name
+                    const price = itemPrices[itemName] || 0; 
                     total += price;
 
                     menuItem.innerHTML = `
@@ -270,7 +233,7 @@
                     const itemToRemove = event.target.getAttribute('data-item');
                     const updatedItems = selectedItems.filter(item => item !== itemToRemove);
                     localStorage.setItem('selectedItems', JSON.stringify(updatedItems));
-                    window.location.reload(); // Reload to refresh the list
+                    window.location.reload(); 
                 }
             });
 
@@ -279,46 +242,62 @@
                 const itemName = event.target.getAttribute('data-item');
                 const quantityElement = orderList.querySelector(`.quantity[data-item="${itemName}"]`);
                 const currentQuantity = parseInt(quantityElement.textContent);
-                const price = itemPrices[itemName.toLowerCase().replace(/ /g, '')] || 0; // Get price based on item name
+                const price = itemPrices[itemName.toLowerCase().replace(/ /g, '')] || 0;
 
                 if (event.target.classList.contains('increase-quantity')) {
                     const newQuantity = currentQuantity + 1;
                     quantityElement.textContent = newQuantity;
                 }
 
-                if (event.target.classList.contains('decrease-quantity') && currentQuantity > 1) {
-                    const newQuantity = currentQuantity - 1;
+                if (event.target.classList.contains('decrease-quantity')) {
+                    const newQuantity = currentQuantity > 1 ? currentQuantity - 1 : 1;
                     quantityElement.textContent = newQuantity;
                 }
 
-                // Recalculate total amount
-                total = 0;
+                // Update total amount
+                let total = 0;
                 selectedItems.forEach(item => {
-                    const itemQuantity = parseInt(orderList.querySelector(`.quantity[data-item="${item}"]`).textContent);
-                    total += itemQuantity * (itemPrices[item.toLowerCase().replace(/ /g, '')] || 0);
+                    const quantity = parseInt(orderList.querySelector(`.quantity[data-item="${item}"]`).textContent);
+                    const itemPrice = itemPrices[item.toLowerCase().replace(/ /g, '')] || 0;
+                    total += itemPrice * quantity;
                 });
 
                 totalAmount.innerHTML = `Total Amount: $${total.toFixed(2)}`;
             });
 
-            // Confirm order button functionality
+            // Confirm order functionality
             confirmOrderButton.addEventListener('click', () => {
                 if (selectedItems.length > 0) {
                     const comment = document.getElementById('orderComment').value;
+                    const order = {
+                        items: selectedItems,
+                        comment: comment,
+                        totalAmount: total.toFixed(2),
+                        orderTime: new Date().toISOString() 
+                    };
+
+                    // Save order to localStorage (or server)
+                    let orders = JSON.parse(localStorage.getItem('orders')) || [];
+                    orders.push(order);
+                    localStorage.setItem('orders', JSON.stringify(orders));
+
                     alert(`Order confirmed! Thank you for your purchase! Your comment: "${comment}"`);
-                    localStorage.removeItem('selectedItems'); // Clear selected items
-                    window.location.href = 'menu.html'; // Redirect to menu
+                    localStorage.removeItem('selectedItems');
+                    window.location.href = 'menu.html';
                 } else {
                     alert('Please select items to order.');
                 }
             });
 
-            // View order button functionality
+            // View orders (for testing)
             viewOrderButton.addEventListener('click', () => {
-                window.location.href = 'view_order.html'; // Redirect to view order page
+                window.location.href = 'staff_order_reply.html'; // Redirect staff to see orders
             });
         });
     </script>
 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

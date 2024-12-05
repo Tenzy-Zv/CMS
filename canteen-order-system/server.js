@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // Temporary storage for orders (this will reset when the server restarts)
 let orders = [];
 
-// Menu items (this can be static or fetched from a database in a real-world scenario)
+// Menu items (static for now)
 const menu = [
     { name: "pokora", price: 30, image: "" },
     { name: "chawmin", price: 30, image: "pizza.jpg" },
@@ -33,8 +33,8 @@ app.post('/api/order', (req, res) => {
     const { customerID, items, comment } = req.body;
 
     // Check if the order has the necessary details
-    if (!customerName || !items || items.length === 0) {
-        return res.status(400).json({ message: 'Missing required fields: customerName, items' });
+    if (!customerID || !items || items.length === 0) {
+        return res.status(400).json({ message: 'Missing required fields: customerID, items' });
     }
 
     // Validate if all ordered items exist in the menu
@@ -52,7 +52,7 @@ app.post('/api/order', (req, res) => {
     }
 
     const order = {
-        customerName,
+        customerID,
         items: orderedItems,
         comment,
         time: new Date().toLocaleString() // Record the time of the order

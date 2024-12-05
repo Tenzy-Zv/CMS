@@ -8,15 +8,14 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-image: url('/htmls/picturesSettings/terma45-1-of-1-scaled.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            background-image: url("/htmls/JNEC-Logo-100x100-1-removebg-preview.png");
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            margin: 0;
         }
 
         .container {
@@ -115,14 +114,49 @@
         .add-button:hover {
             background-color: #218838;
         }
+
+        /* Navbar Styles */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <a class="navbar-brand" href="/htmls/Staff_menu_edit.html">MENU</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff_home_page.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff_menu_edit.html">Manage Menu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/staff-VIEW_FEEDBack.html">View Feedback</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/Staff_user_profile.html">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/htmls/">Logout</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
     <div class="container">
         <div class="header">
             <h1>Manage Menu</h1>
-            <button class="edit-menu-button" onclick="window.location.href='C:\Users\tenzyy\CMS\htmls\staff_home_page.html'">Edit Menu</button>
+            <button class="edit-menu-button" onclick="window.location.href='/htmls/staff_home_page.html'">Go to Home</button>
         </div>
 
         <div class="categories">
